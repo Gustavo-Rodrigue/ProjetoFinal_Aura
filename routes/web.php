@@ -17,7 +17,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/cadastrar',[UserController::class,'cadastrar'])->name('cadastrar');
 
 // Página inicial / mural
-Route::get('/mural', [UserController::class, 'index'])->name('mural.index');
+// Route::get('/mural', [UserController::class, 'index'])->name('mural.index');
 
 // Página inicial personalizada
 Route::get('/pag_init', [UserController::class, 'pagInit'])->name('pag_init');
