@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pag_init/index');
 });
-Route::get('/mural', [UserController::class, 'index'])->name('mural.index');
 Route::get('/informacoes', [UserController::class, 'informacoes'])->name('informacoes.index');
 Route::get('/documento_estagio', [UserController::class, 'documento_estagio'])->name('documento_estagio.index');
 
