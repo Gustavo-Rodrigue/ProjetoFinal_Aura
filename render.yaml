@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: aura-laravel
+    env: docker
+    docker:
+      dockerfile: Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: RUN_MIGRATIONS
+        value: true
+    buildCommand: ""
+    startCommand: ""

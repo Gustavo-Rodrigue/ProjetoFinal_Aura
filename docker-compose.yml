@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aura-app
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_HOST=db
+      - DB_PORT=3306
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www
+    networks:
+      - aura-network
+
+  db:
+    image: mysql:8.0
+    container_name: aura-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: aura_db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_PASSWORD: aurapassword
+      MYSQL_USER: aura_user
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - aura-network
+
+volumes:
+  dbdata:
+
+networks:
+  aura-network:
+    driver: bridge
