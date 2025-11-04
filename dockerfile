@@ -26,13 +26,15 @@ COPY docker/nginx.conf /etc/nginx/sites-available/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
-# Criar diretório da aplicação
 WORKDIR /var/www
 
-# Copiar aplicação
+# Copiar TODOS os arquivos da aplicação
 COPY . /var/www/
 
-# Instalar dependências do Laravel
+# Verificar se os controllers foram copiados (para debug)
+RUN ls -la app/Http/Controllers/
+
+# Instalar dependências
 RUN composer install --no-dev --optimize-autoloader
 
 # Configurar permissões
